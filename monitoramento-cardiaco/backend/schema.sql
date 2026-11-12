@@ -1,4 +1,4 @@
--- Monitoramento Cardíaco Equino — rode este script no MySQL Workbench (raio ⚡)
+-- Monitoramento Cardíaco Equino — rode este script no MySQL Workbench (raio, na parte superior)
 CREATE DATABASE IF NOT EXISTS equino
     CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE equino;
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS dispositivos (
         REFERENCES cavalos (id) ON DELETE SET NULL
 );
 
--- Horários guardados em UTC
+-- Horários guardados no fuso de Brasília (America/Sao_Paulo)
 CREATE TABLE IF NOT EXISTS medicoes (
     id             BIGINT AUTO_INCREMENT PRIMARY KEY,
     cavalo_id      INT NOT NULL,
