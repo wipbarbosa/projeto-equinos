@@ -6,7 +6,7 @@ ESP32 --(Wi-Fi, HTTP/JSON)--> API (Flask) --> MySQL --> Dashboard
 
 ## 1. Criar o banco
 
-No MySQL Workbench, abra `backend/schema.sql` e execute tudo (raio parte superior).
+No MySQL Workbench, abra `backend/schema.sql` e execute tudo (raio ⚡).
 Isso cria o banco `equino`, as tabelas e o cavalo "Trovão" ligado ao dispositivo `esp32-01`.
 
 ## 2. Rodar o backend
@@ -63,7 +63,7 @@ No `esp32/main.py`, troque `bpm_simulado(...)` pelo BPM suavizado calculado a pa
 
 | Método | Rota | Função |
 |---|---|---|
-| POST | `/medicoes` | Recebe `{device_id, bpm, signal_ok}` (horário carimbado pelo servidor, em UTC) |
+| POST | `/medicoes` | Recebe `{device_id, bpm, signal_ok}` (horário de Brasília carimbado pelo servidor) |
 | GET | `/cavalos` | Lista cavalos |
 | POST | `/cavalos` | Cadastra cavalo (`{nome}`) |
 | POST | `/cavalos/<id>/dispositivo` | Vincula um dispositivo (`{device_id}`) |
