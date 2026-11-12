@@ -2,7 +2,7 @@ from machine import ADC, Pin
 import time
 
 # sensor no pino VP
-sensor = ADC(Pin(36))
+sensor = ADC(Pin(34))
 sensor.atten(ADC.ATTN_11DB)
 
 # pinos
@@ -10,10 +10,11 @@ lo_mais = Pin(32, Pin.IN)
 lo_menos = Pin(33, Pin.IN)
 
 # valor que conta um batimento
-LIMIAR = 50000
+LIMIAR = 30000
 
 # guardar o tempo do ultimo batimento contado
 ultimo_batimento = 0
+contador = 0
 
 while True:
 
@@ -25,15 +26,19 @@ while True:
 
     # ler o sensor
     valor = sensor.read_u16()
-    print(valor)
+    # mostrar so 1 leitura a cada 10
+    contador = contador + 1
+    if contador >= 10:
+        print(valor)
+        contador = 0
 
     agora = time.ticks_ms() # pega o tempo atual
     tempo = time.ticks_diff(agora, ultimo_batimento) # quanto tempo desde o ultimo batimento
 
     # contar apenas se passar de 0.3 segundos do ultimo
-    if valor > LIMIAR and tempo > 300: # dividir minuto pelo tempo de 2 batimentos
+    if valor > LIMIAR and tempo > 300: # dividir minuto pelo tempo de 2 batimentos+
         bpm = 60000 // tempo
         print("BPM", bpm)
         ultimo_batimento = agora # guardar batimento como o mais recente
 
-    time.sleep(0.1)
+    time.sleep(0.001)
