@@ -6,7 +6,7 @@ ESP32 --(Wi-Fi, HTTP/JSON)--> API (Flask) --> MySQL --> Dashboard
 
 ## 1. Criar o banco
 
-No MySQL Workbench, abra `backend/schema.sql` e execute tudo (raio ⚡).
+No MySQL Workbench, abra `backend/schema.sql` e execute tudo (raio, na parte superior).
 Isso cria o banco `equino`, as tabelas e o cavalo "Trovão" ligado ao dispositivo `esp32-01`.
 
 ## 2. Rodar o backend
