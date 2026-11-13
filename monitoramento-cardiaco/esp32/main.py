@@ -1,5 +1,9 @@
 from machine import ADC, Pin
 import time
+from envio import conectar_wifi, enviar
+
+# conectar no wifi antes de comecar
+conectar_wifi()
 
 # sensor no pino VP
 sensor = ADC(Pin(34))
@@ -15,6 +19,10 @@ LIMIAR = 30000
 # guardar o tempo do ultimo batimento contado
 ultimo_batimento = 0
 contador = 0
+
+# guardar o ultimo bpm e quando ele foi enviado
+bpm = 0
+ultimo_envio = 0
 
 while True:
 
@@ -40,5 +48,10 @@ while True:
         bpm = 60000 // tempo
         print("BPM", bpm)
         ultimo_batimento = agora # guardar batimento como o mais recente
+
+    # mandar o bpm para a api a cada 2 segundos
+    if bpm > 0 and time.ticks_diff(agora, ultimo_envio) > 2000:
+        enviar(bpm)
+        ultimo_envio = agora
 
     time.sleep(0.001)
