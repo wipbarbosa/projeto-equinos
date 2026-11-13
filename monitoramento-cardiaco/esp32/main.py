@@ -2,7 +2,7 @@ from machine import ADC, Pin
 import time
 from envio import conectar_wifi, enviar
 
-# conectar no wifi antes de comecar
+# conectar no wifi
 conectar_wifi()
 
 # sensor no pino VP
